@@ -20,6 +20,7 @@
 // in Built-in functions :
 // function reverseString($str) {return strrev($str);}
 // Manual :
+echo 'Reverse a String:- echo reverseString("Hello World"); // Outputs: dlroW olleH <br>';
 function reverseString($str)
 {
     $reversedStr = "";
@@ -29,7 +30,7 @@ function reverseString($str)
     return   $reversedStr;
 }
 echo reverseString("Hello World"); // Outputs: dlroW olleH
-echo "<br>";
+echo "<br>  <hr>";
 // ===================
 // 2. Palindrome Check: Write a function to check if a given string is a palindrome (reads the same forwards and backwards), ignoring spaces, punctuation, and capitalization.
 // - echo isPalindrome("A man, a plan, a canal, Panama"); // Outputs: true
@@ -38,6 +39,7 @@ echo "<br>";
 //     $str = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $str));
 //     return $str === strrev($str);
 // }
+echo  'echo isPalindrome("A man, a plan, a canal, Panama"); // Outputs: true in functions : <br>';
 function isPalindrome($str)
 {
     $strCleared = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $str));
@@ -50,7 +52,7 @@ function isPalindrome($str)
     return true;
 }
 echo isPalindrome("A man, a plan, a canal, Panama");
-echo "<br>"; // Outputs: true
+echo "<br> <hr>"; // Outputs: true
 // ===================
 
 // 3. Anagram Detection: Implement a function to check if two strings are anagrams of each other (contain the same characters with the same frequency).
@@ -65,37 +67,38 @@ echo "<br>"; // Outputs: true
 //     $freq2 = array_count_values(str_split($str2));
 //     return $freq1 === $freq2;
 // }
+echo 'echo isAnagram("listen", "silent"); // Outputs: true <br>';
 function isAnagram($str1, $str2)
 {
     $str1 = str_replace(' ', '', strtolower($str1));
     $str2 = str_replace(' ', '', strtolower($str2));
-    // print_r(count_chars($str1,1));
+    //print_r(count_chars($str1,1));
     return (count_chars($str1, 1)) === (count_chars($str2, 1));
 }
 echo isAnagram("listen", "silent");
-echo "<br>"; //T 
+echo "<br> <hr> "; //T 
+echo 'echo isAnagram(\'card\', \'cart\'); // Outputs: false <br>';
 echo isAnagram('card', 'cart');
-echo "<br>"; //false
-echo isAnagram("listen", "silent");
-echo "<br>"; //T
+echo "<br> <hr>"; //false
 // ===================
 
 // 4. String Compression: Write a function to perform basic string compression by replacing consecutive repeated characters with their count. For example, "aabcccccaaa" would become "a2b1c5a3".
 // - echo compressString("aaabbbccc"); // Outputs: a3b3c3
 // function compressString($str) {
-    //     $compressed = '';
-    //     $count = 1;
-    //     for ($i = 0; $i < strlen($str); $i++) {
-    //         if ($i !== 0 && $str[$i] !== $str[$i - 1]) {
-    //             $compressed .= $str[$i - 1] . $count;
-    //             $count = 1;
-    //         } else {
-    //             $count++;
-    //         }
-    //     }
-    //     $compressed .= $str[strlen($str) - 1] . $count;
-    //     return strlen($compressed) < strlen($str) ? $compressed : $str;
+//     $compressed = '';
+//     $count = 1;
+//     for ($i = 0; $i < strlen($str); $i++) {
+//         if ($i !== 0 && $str[$i] !== $str[$i - 1]) {
+//             $compressed .= $str[$i - 1] . $count;
+//             $count = 1;
+//         } else {
+//             $count++;
+//         }
+//     }
+//     $compressed .= $str[strlen($str) - 1] . $count;
+//     return strlen($compressed) < strlen($str) ? $compressed : $str;
 // }
+echo 'echo compressString("aaabbbccc"); // Outputs: a3b3c3 <br>';
 function compressString($str)
 {
     $compressedStr = "";
@@ -108,153 +111,211 @@ function compressString($str)
             $count = 1;
         }
     }
-    $compressedStr .= $str[strlen($str) - 1] . $count;//the last char
+    $compressedStr .= $str[strlen($str) - 1] . $count; //the last char
     return $compressedStr;
 }
-echo compressString("abbbccabn"). "<br>";  // Outputs: a1b3c2a1b1n1
+echo 'echo compressString("abbbccabn") : <br>';
+echo compressString("abbbccabn") . "<br><hr>";  // Outputs: a1b3c2a1b1n1
 // ===================
 
 // 5. String Permutations: Write a function to generate all permutations of a given string.
 // print_r(permuteString("abc")); // Outputs: ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
-function permuteString($str) {
-        if (strlen($str) <= 1) {
-            return [$str];
-        }
-        $perms = [];
-        $tail = substr($str, 1);//bc
-        foreach (permuteString($tail) as $perm) {
-
-            for ($i = 0; $i <= strlen($perm); $i++) {
-                $perms[] = substr($perm, 0, $i) . $str[0] . substr($perm, $i);
-            }
-
-        }
-        return $perms;
+echo 'String Permutations: Write a function to generate all permutations of a given string.
+// print_r(permuteString("abc")); // Outputs: [\'abc\', \'acb\', \'bac\', \'bca\', \'cab\', \'cba\']';
+function permuteString($str)
+{
+    if (strlen($str) <= 1) {
+        return [$str];
     }
-    echo("<pre>");
-    print_r(permuteString("abcd")); echo("</pre>");
+    $perms = [];
+    $tail = substr($str, 1); //bc
+    foreach (permuteString($tail) as $perm) {
+
+        for ($i = 0; $i <= strlen($perm); $i++) {
+            $perms[] = substr($perm, 0, $i) . $str[0] . substr($perm, $i);
+        }
+    }
+    return $perms;
+}
+echo ("<pre>");
+print_r(permuteString("abcd"));
+echo ("</pre> <hr>");
 // Array(
-    //     [0] => abcd
-    //     [1] => bacd
-    //     [2] => bcad
-    //     [3] => bcda
-    //     [4] => acbd
-    //     [5] => cabd
-    //     [6] => cbad
-    //     [7] => cbda
-    //     [8] => acdb
-    //     [9] => cadb
-    //     [10] => cdab
-    //     [11] => cdba
-    //     [12] => abdc
-    //     [13] => badc
-    //     [14] => bdac
-    //     [15] => bdca
-    //     [16] => adbc
-    //     [17] => dabc
-    //     [18] => dbac
-    //     [19] => dbca
-    //     [20] => adcb
-    //     [21] => dacb
-    //     [22] => dcab
-    //     [23] => dcba
-    // )
+//     [0] => abcd
+//     [1] => bacd
+//     [2] => bcad
+//     [3] => bcda
+//     [4] => acbd
+//     [5] => cabd
+//     [6] => cbad
+//     [7] => cbda
+//     [8] => acdb
+//     [9] => cadb
+//     [10] => cdab
+//     [11] => cdba
+//     [12] => abdc
+//     [13] => badc
+//     [14] => bdac
+//     [15] => bdca
+//     [16] => adbc
+//     [17] => dabc
+//     [18] => dbac
+//     [19] => dbca
+//     [20] => adcb
+//     [21] => dacb
+//     [22] => dcab
+//     [23] => dcba
+// )
 
-
+// or
+// 5-    String Permutations: (Recursive approach)
+// function permuteString($str) {
+//     $perms = [];
+//     if (strlen($str) <= 1) {
+//         return [$str];
+//     }
+//     for ($i = 0; $i < strlen($str); $i++) {
+//         $firstChar = $str[$i];
+//         $remainingChars = substr_replace($str, '', $i, 1);
+//         foreach (permuteString($remainingChars) as $perm) {
+//             $perms[] = $firstChar . $perm;
+//         }
+//     }
+//     return $perms;
+// }
 // ===================
 
 // 6. Substring Search: Implement a function to check if a given substring exists within a larger string, and if so, return its starting index.
 // echo substringSearch("hello world", "world"); // Outputs: 6
 // in functions : 
 // function substringSearch($haystack, $needle) {
-    //     return strpos($haystack, $needle) !== false;
+//     return strpos($haystack, $needle) !== false;
+// }
+echo 'echo substringSearch("hello world", "world"); // Outputs: 6 <br>';
+// فكرتي
+    // function substringSearch($haystack, $needle) {
+    //     $haystackLen = strlen($haystack);
+    //     $needleLen = strlen($needle);
+
+    //     // التكرار على كل حرف في السلسلة الأكبر
+    //     for ($i = 0; $i <= $haystackLen - $needleLen; $i++) {
+    //         // التحقق من تطابق الحرف الأول
+    //         if ($haystack[$i] == $needle[0]) {
+    //             $found = true;
+    //             // التكرار على باقي الأحرف في السلسلة الفرعية
+    //             for ($j = 1; $j < $needleLen; $j++) {
+    //                 if ($haystack[$i + $j] != $needle[$j]) {
+    //                     $found = false;
+    //                     break;
+    //                 }
+    //             }
+    //             // إذا تم العثور على تطابق كامل، إرجاع الفهرس الأول
+    //             if ($found) {
+    //                 return $i;
+    //             }
+    //         }
+    //     }
+    //     // إذا لم يتم العثور على السلسلة الفرعية
+    //     return -1;
     // }
-    function substringSearch($haystack, $needle) {
-        $haystackLen = strlen($haystack);
-        $needleLen = strlen($needle);
-        for ($i = 0; $i <= $haystackLen - $needleLen; $i++) {
-            // $i <= $haystackLen - $needleLen because: 
+
+    // // مثال على الاستخدام:
+    // echo substringSearch("This is a test string", "test"); // سيعيد 10
+    // 
+
+function substringSearch($haystack, $needle)
+{
+    $haystackLen = strlen($haystack);
+    $needleLen = strlen($needle);
+    for ($i = 0; $i <= $haystackLen - $needleLen; $i++) {
+        // $i <= $haystackLen - $needleLen because: 
         //  عشان مندورش في باقي النص وهو مش هينفع يكون فيه 
         // يعني لو هو طوله 11 زي ما هو معانا كده والكلمة اللي ببحث عنها طولها 5 يبقا همشي خمسة بخمسة جمب بعض فهلاقي نفسي وصلت للنهاية لما مشيت ست خطوات 
-            $found = true;
-            for ($j = 0; $j < $needleLen; $j++) {
-                // كل مرة هبحث من الحرف للي انا واقف عنده لحد آخر طول النييد 
-                if ($haystack[$i + $j] !== $needle[$j]) {
-                    // لو هو أصلا أول حرف مش بيساوي الحرف اللي عليه الدور يبقا عديه لحد ما تلاقي أول حرف في البحث هو الحرف اللي عليه الدور ساعتها اتأكد بطوله
-                    $found = false;
-                    break;
-                }
-            }
-            if ($found) {
-                return $i;
+        $found = true;
+        for ($j = 0; $j < $needleLen; $j++) {
+            // كل مرة هبحث من الحرف للي انا واقف عنده لحد آخر طول النييد 
+            if ($haystack[$i + $j] !== $needle[$j]) {
+                // لو هو أصلا أول حرف مش بيساوي الحرف اللي عليه الدور يبقا عديه لحد ما تلاقي أول حرف في البحث هو الحرف اللي عليه الدور ساعتها اتأكد بطوله
+                $found = false;
+                break;
             }
         }
-        return -1;
-    }   
-    echo substringSearch("hello world", "world"). "<br>"; ; // Outputs: 6
+        if ($found) {
+            return $i;
+        }
+    }
+    return -1;
+}
+echo substringSearch("hello world", "world") . "<br> <hr>";; // Outputs: 6
 // ===================
 
 // 7. Longest Substring Without Repeating Characters: Find the length of the longest substring without repeating characters within a given string.
 // - echo longestSubstringWithoutRepeating("abcabcbb"); // Outputs: 3 (for "abc")
 // function lengthOfLongestSubstring($s) {
-    //     $mp = [];
-    //     $mx = 0;
-    // $l = 0; //left
+//     $mp = [];
+//     $mx = 0;
+// $l = 0; //left
 
-    //     for ($i = 0; $i < strlen($s); $i++) {
-    //         while ($mp[$s[$i]] != 0) {
-    //             $mp[$s[$l]] = 0;
-    //             $l++;
-    //         }
-    //         $mp[$s[$i]]++;
-    //         $mx = max($mx, ($i - $l + 1));
-    //     }
+//     for ($i = 0; $i < strlen($s); $i++) {
+//         while ($mp[$s[$i]] != 0) {
+//             $mp[$s[$l]] = 0;
+//             $l++;
+//         }
+//         $mp[$s[$i]]++;
+//         $mx = max($mx, ($i - $l + 1));
+//     }
 
-    //     return $mx;
-    // }
-
- function longestSubstringWithoutRepeating($s) {
+//     return $mx;
+// }
+echo 'Longest Substring Without Repeating Characters: ';
+function longestSubstringWithoutRepeating($s)
+{
     $maxLen = 0;
-    $start = 0;
+    $start = 0;//left
     $charIndexMap = [];
+    $maxSubstr='';//if i want get it 
 
     for ($end = 0; $end < strlen($s); $end++) {
         if (array_key_exists($s[$end], $charIndexMap)) {
             // Update the start position to the next character after the repeated character
-            $start = max($start, $charIndexMap[$s[$end]] + 1);
+            $start = max($start, $charIndexMap[$s[$end]] + 1);//left ++ 
         }
         // Update the index of the current character
         $charIndexMap[$s[$end]] = $end;
         // Calculate the current substring length
         $maxLen = max($maxLen, $end - $start + 1);
+        // $maxSubstr = substr($s, $l, $mx);
+        $maxSubstr = substr($s, $start, $maxLen);
     }
 
-    return $maxLen;
+    return " max sub is : $maxSubstr and  length is ".$maxLen . "<br>";
 }
-
-    echo longestSubstringWithoutRepeating("abcabcbbcccccddabcddccc"). "<br>";  // Outputs: 3 (for "abc")
+echo 'echo longestSubstringWithoutRepeating("abcabcbbcccccddabcddcABCDEFGHcc")<br>';
+echo longestSubstringWithoutRepeating("abcdefghi") . " <hr>";  
 // ===================
 
 // 8. String Rotation: Write a function to check if one string is a rotation of another string. For example, "waterbottle" is a rotation of "waterbottle".
 //For example, if s = "abcde", then it will be "bcdea" after one shift.
-function isStringRotation($str1, $str2) {
+function isStringRotation($str1, $str2)
+{
     if (strlen($str1) !== strlen($str2)) {
         return false;
     }
     return strpos($str1 . $str1, $str2) !== false;
 }
-echo isStringRotation("waterbottle", "waterbottle") . "<br>" ;
+echo isStringRotation("waterbottle", "waterbottle") . "<br><hr>";
 // ===================
 
 // 9. Count Vowels and Consonants: Write a function to count the number of vowels and consonants in a given string.
 // aeiou
 // print_r(countVowelsAndConsonants("Hello World")); // Outputs: ['vowels' => 3, 'consonants' => 7]
 // function countVowelsAndConsonants($str) {
-    //     $vowels = preg_match_all('/[aeiou]/i', $str);
-    //     $consonants = preg_match_all('/[bcdfghjklmnpqrstvwxyz]/i', $str);
-    //     return ["vowels" => $vowels, "consonants" => $consonants];
-    // }
-function countVowelsAndConsonants($str) {
+//     $vowels = preg_match_all('/[aeiou]/i', $str);
+//     $consonants = preg_match_all('/[bcdfghjklmnpqrstvwxyz]/i', $str);
+//     return ["vowels" => $vowels, "consonants" => $consonants];
+// }
+function countVowelsAndConsonants($str)
+{
     $vowels = 0;
     $consonants = 0;
     $str = strtolower($str);
@@ -267,9 +328,9 @@ function countVowelsAndConsonants($str) {
     }
     return ["vowels" => $vowels, "consonants" => $consonants];
 }
- print_r(countVowelsAndConsonants("Hello World")) ;
- echo "<br>"; 
- // Outputs: ['vowels' => 3, 'consonants' => 7]
+print_r(countVowelsAndConsonants("Hello World"));
+echo "<br> <hr>";
+// Outputs: ['vowels' => 3, 'consonants' => 7]
 
 // ===================
 
@@ -280,7 +341,8 @@ function countVowelsAndConsonants($str) {
 // function concatenateStrings($str1, $str2) {
 //     return $str1 . $str2;
 // }
-function concatenateStrings($str1, $str2) {
+function concatenateStrings($str1, $str2)
+{
     $result = '';
     for ($i = 0; $i < strlen($str1); $i++) {
         $result .= $str1[$i];
@@ -290,7 +352,7 @@ function concatenateStrings($str1, $str2) {
     }
     return $result;
 }
- echo concatenateStrings("Hello", "World")."<br>"; // Outputs: HelloWorld
+echo concatenateStrings("Hello", "World") . "<br><hr>"; // Outputs: HelloWorld
 
 // Using implode()
 // function concatenateStringsImplode($strArray) {
@@ -298,7 +360,8 @@ function concatenateStrings($str1, $str2) {
 // }
 // explode by me : https://github.com/MohamedKarm551/trying-To-Create-function-explode
 
-function concatenateStringsImplode($strArray) {
+function concatenateStringsImplode($strArray)
+{
     $result = '';
     foreach ($strArray as $str) {
         for ($i = 0; $i < strlen($str); $i++) {
@@ -307,4 +370,4 @@ function concatenateStringsImplode($strArray) {
     }
     return $result;
 }
-echo concatenateStringsImplode(["Hello", "World"])."<br>"; // Outputs: HelloWorld
+echo concatenateStringsImplode(["Hello", "World"]) . "<br><hr>"; // Outputs: HelloWorld
